@@ -4,7 +4,7 @@
   "description": "srpago",
   "main": "app.js",
   "scripts": {
-    "mongo:start": "docker run --name srpago-mongo -p 27017:27017 mongo & sleep 5",
+    "postinstall": "npm start",
     "start": "node ./app.js",
     "dev": "nodemon ./app.js",
     "test": "newman run ./tests/api-tests.postman.json -e ./tests/env-api-tests.postman.json",
