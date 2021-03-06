@@ -1,7 +1,7 @@
 {
-  "name": "srpago",
+  "name": "srpagoadolforuiz",
   "version": "1.0.0",
-  "description": "srpago",
+  "description": "srpagoadolforuiz",
   "main": "app.js",
   "scripts": {
     "mongo:start": "docker run --name srpago-mongo -p 27017:27017 mongo & sleep 5",
