@@ -24,7 +24,9 @@ app.use(bodyParser.json());
 app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
 
-app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
+app.use(
+  session({ secret: 'secret', cookie: { maxAge: 60000 }, 
+  resave: false, saveUninitialized: false  }));
 
 if (!isProduction) {
   app.use(errorhandler());
@@ -33,7 +35,7 @@ if (!isProduction) {
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb+srv://acnesiac:Aruizrivas1@cluster0.oytmo.mongodb.net/srpagotest?authSource=admin&replicaSet=atlas-weuu5b-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true');
+  mongoose.connect('mongodb+srv://acnesiac:Aruizrivas1@cluster0.oytmo.mongodb.net/srpagotest?authSource=admin&replicaSet=atlas-weuu5b-shard-0&readPreference=primary&appname=MongoDB%20Compass');
   mongoose.set('debug', true);
 }
 

@@ -4,18 +4,6 @@ var Article = mongoose.model('Article');
 var User = mongoose.model('User');
 var auth = require('../auth');
 
-// Preload article objects on routes with ':article'
-router.param('article', function(req, res, next, slug) {
-  Article.findOne({ slug: slug})
-    .populate('author')
-    .then(function (article) {
-      if (!article) { return res.sendStatus(404); }
-
-      req.article = article;
-
-      return next();
-    }).catch(next);
-});
 
 router.get('/', auth.optional, function(req, res, next) {
   var query = {};
@@ -126,61 +114,8 @@ router.post('/', auth.required, function(req, res, next) {
   }).catch(next);
 });
 
-// return a article
-router.get('/:article', auth.optional, function(req, res, next) {
-  Promise.all([
-    req.payload ? User.findById(req.payload.id) : null,
-    req.article.populate('author').execPopulate()
-  ]).then(function(results){
-    var user = results[0];
 
-    return res.json({article: req.article.toJSONFor(user)});
-  }).catch(next);
-});
 
-// update article
-router.put('/:article', auth.required, function(req, res, next) {
-  User.findById(req.payload.id).then(function(user){
-    if(req.article.author._id.toString() === req.payload.id.toString()){
-      if(typeof req.body.article.title !== 'undefined'){
-        req.article.title = req.body.article.title;
-      }
-
-      if(typeof req.body.article.description !== 'undefined'){
-        req.article.description = req.body.article.description;
-      }
-
-      if(typeof req.body.article.body !== 'undefined'){
-        req.article.body = req.body.article.body;
-      }
-
-      if(typeof req.body.article.tagList !== 'undefined'){
-        req.article.tagList = req.body.article.tagList
-      }
-
-      req.article.save().then(function(article){
-        return res.json({article: article.toJSONFor(user)});
-      }).catch(next);
-    } else {
-      return res.sendStatus(403);
-    }
-  });
-});
-
-// delete article
-router.delete('/:article', auth.required, function(req, res, next) {
-  User.findById(req.payload.id).then(function(user){
-    if (!user) { return res.sendStatus(401); }
-
-    if(req.article.author._id.toString() === req.payload.id.toString()){
-      return req.article.remove().then(function(){
-        return res.sendStatus(204);
-      });
-    } else {
-      return res.sendStatus(403);
-    }
-  }).catch(next);
-});
 
 
 module.exports = router;
