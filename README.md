@@ -8,8 +8,6 @@
 - `npm start`
 - usar el usuario acnesiac@hotmail.com, password Aruizr1$
 
-
-
 - Instrucciones para correr en heroku
 
 - https://srpagotestadolforuiz.herokuapp.com/
