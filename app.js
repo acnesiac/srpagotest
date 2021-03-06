@@ -38,7 +38,7 @@ if (!isProduction) {
 
 
 require('./models/User');
-require('./models/Article');
+require('./models/Movie');
 require('./config/passport');
 
 app.use(require('./routes'));

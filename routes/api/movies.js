@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
-var Article = mongoose.model('Article');
+var Movie = mongoose.model('Movie');
 var User = mongoose.model('User');
 var auth = require('../auth');
 
@@ -40,13 +40,13 @@ router.get('/', auth.optional, function(req, res, next) {
     }
 
     return Promise.all([
-      Article.find(query)
+      Movie.find(query)
         .limit(Number(limit))
         .skip(Number(offset))
         .sort({createdAt: 'desc'})
         .populate('author')
         .exec(),
-      Article.count(query).exec(),
+        Movie.count(query).exec(),
       req.payload ? User.findById(req.payload.id) : null,
     ]).then(function(results){
       var articles = results[0];
@@ -79,12 +79,12 @@ router.get('/feed', auth.required, function(req, res, next) {
     if (!user) { return res.sendStatus(401); }
 
     Promise.all([
-      Article.find({ author: {$in: user.following}})
+      Movie.find({ author: {$in: user.following}})
         .limit(Number(limit))
         .skip(Number(offset))
         .populate('author')
         .exec(),
-      Article.count({ author: {$in: user.following}})
+        Movie.count({ author: {$in: user.following}})
     ]).then(function(results){
       var articles = results[0];
       var articlesCount = results[1];
@@ -103,7 +103,7 @@ router.post('/', auth.required, function(req, res, next) {
   User.findById(req.payload.id).then(function(user){
     if (!user) { return res.sendStatus(401); }
 
-    var article = new Article(req.body.article);
+    var article = new Movie(req.body.article);
 
     article.author = user;
 
