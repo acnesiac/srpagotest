@@ -4,7 +4,6 @@
   "description": "srpago",
   "main": "app.js",
   "scripts": {
-    "postinstall": "npm start",
     "start": "node ./app.js",
     "dev": "nodemon ./app.js",
     "test": "newman run ./tests/api-tests.postman.json -e ./tests/env-api-tests.postman.json",
