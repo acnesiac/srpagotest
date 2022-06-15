@@ -19,7 +19,7 @@ La applicacion usa mongodb atlas ubicada en la direccion:
 mongodb+srv://acnesiac:Aruizrivas1@cluster0.oytmo.mongodb.net/srpagotest?authSource=admin&replicaSet=atlas-weuu5b-shard-0&readPreference=primary&appname=MongoDB%20Compass
 
 
-
+http://localhost:3000/
 
 
 
