@@ -40,13 +40,8 @@ router.get('/', auth.optional, function(req, res, next) {
     }
 
     return Promise.all([
-      Movie.find(query)
-        .limit(Number(limit))
-        .skip(Number(offset))
-        .sort({createdAt: 'desc'})
-        .populate('author')
-        .exec(),
-        Movie.count(query).exec(),
+      Movie.find({}),
+        1,
       req.payload ? User.findById(req.payload.id) : null,
     ]).then(function(results){
       var articles = results[0];

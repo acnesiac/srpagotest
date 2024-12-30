@@ -33,8 +33,8 @@ if (!isProduction) {
 }
 
 
-  mongoose.connect('mongodb+srv://acnesiac:Aruizrivas1@cluster0.oytmo.mongodb.net/srpagotest?authSource=admin&replicaSet=atlas-weuu5b-shard-0&readPreference=primary&appname=MongoDB%20Compass');
-  //mongoose.connect('mongodb+srv://acnesiac:Aruizrivas1@cluster0.oytmo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{ useUnifiedTopology: true, useNewUrlParser: true } );
+  //mongoose.connect('mongodb+srv://acnesiac:Aruizrivas1@cluster0.oytmo.mongodb.net/srpagotest?authSource=admin&replicaSet=atlas-weuu5b-shard-0&readPreference=primary&appname=MongoDB%20Compass');
+  mongoose.connect('mongodb+srv://acnesiac:Aruizrivas1@cluster0.oytmo.mongodb.net/srpagotest?retryWrites=true&w=majority&appName=Cluster0' );
   mongoose.set('debug', true);
 
 
