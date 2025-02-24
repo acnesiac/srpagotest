@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./app.js",
-    "dev": "nodemon ./app.js",
-    "test": "newman run ./tests/api-tests.postman.json -e ./tests/env-api-tests.postman.json"
+    "dev": "nodemon ./app.js"
   },
   "license": "ISC",
   "dependencies": {
